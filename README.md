@@ -1,3 +1,11 @@
+#Reactの基礎サンプルコード
+[キョウタコの記述日記](https://kyotakotech.blog)の記事「Reactの基礎」のサンプルコードです。
+その３以降のサンプルコードを見ることができます。
+
+コミットログにてその３とその4の内容を分けています。
+
+その4の内容はブランチで切り分けています。
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
