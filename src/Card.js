@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CardsContext } from "./App";
 
-function Card({ card, toggleStatus }) {
+function Card({ card }) {
+  const { toggleCardStatus } = useContext(CardsContext);
+
   return (
     <div className='card'>
       <div className="todoIcon">✔︎</div>
@@ -9,7 +12,7 @@ function Card({ card, toggleStatus }) {
         <span>status:</span>
         <button
           className="statusButton"
-          onClick={() => toggleStatus(card.id)}
+          onClick={() => toggleCardStatus(card.id)}
         >
           {card.status}
         </button>

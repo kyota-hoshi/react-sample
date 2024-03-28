@@ -1,12 +1,10 @@
-import './App.css';
-import { useState, useEffect, createContext } from 'react';
-import Header from './Header';
-import Body from './Body';
-import { getRandomId } from './util/utils';
-import { fetchCards } from './util/cards';
-export const CardsContext = createContext();
+import React, { useState, useEffect, createContext, useContext } from "react";
+import { fetchCards } from "../util/cards";
+import { getRandomId } from "../util/utils";
 
-function App() {
+const CardsContext = createContext();
+
+export const useCards = () => {
   const [cards, setCards] = useState([]);
 
   const toggleStatus = (status) => {
@@ -52,19 +50,23 @@ function App() {
     setCards(fetchCards());
   }, []);
 
-  return (
-    <CardsContext.Provider
-      value={{
-      cards,
-      setCards,
-      toggleCardStatus,
-      addCard,
-      }}
-    >
-      <Header />
-      <Body />
-    </CardsContext.Provider>
-  );
-}
+  const CardsProvider = ({ children }) => {
+    return (
+      <CardsContext.Provider
+       value={{
+        cards,
+        setCards,
+        toggleCardStatus,
+        addCard,
+       }}
+      >
+        {children}
+      </CardsContext.Provider>
+    )
+  }
 
-export default App;
+  return {
+    CardsProvider,
+    ...useContext(CardsContext),
+  }
+};
